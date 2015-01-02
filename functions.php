@@ -654,6 +654,8 @@ function select_ghostscript() {
 
     global $selected_ghostscript;
 
+    $selected_ghostscript = exec('which gs');
+/*
     if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN' && is_executable('bin' . DIRECTORY_SEPARATOR . 'gs' . DIRECTORY_SEPARATOR . 'gswin32c.exe')) {
         $selected_ghostscript = 'bin' . DIRECTORY_SEPARATOR . 'gs' . DIRECTORY_SEPARATOR . 'gswin32c.exe';
     } elseif (PHP_OS == 'Linux') {
@@ -661,7 +663,7 @@ function select_ghostscript() {
     } elseif (PHP_OS == 'Darwin' && is_executable(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'gs' . DIRECTORY_SEPARATOR . 'gs.osx')) {
         $selected_ghostscript = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'gs' . DIRECTORY_SEPARATOR . 'gs.osx';
     }
-
+*/
     return $selected_ghostscript;
 }
 
