@@ -328,6 +328,7 @@ if (isset($_SESSION['auth'])) {
                     <td class="details">
                         <input type="radio" name="watermarks" value="nocopy" <?php print ($watermarks == 'nocopy') ? 'checked' : ''  ?>>DO NOT COPY
                         <input type="radio" name="watermarks" value="confidential" <?php print ($watermarks == 'confidential') ? 'checked' : ''  ?>>CONFIDENTIAL
+                        <input type="radio" name="watermarks" value="username" <?php print ($watermarks == 'username') ? 'checked' : ''  ?>>User Name
                         <input type="radio" name="watermarks" value="" <?php print ($watermarks == '') ? 'checked' : ''  ?>>no watermark
                     </td>
                 </tr>

@@ -36,6 +36,22 @@ if (!empty($_GET['file'])) {
             if (!file_exists($temp_file) || filemtime($temp_file) < filemtime($file_name))
                 system(select_pdftk() . '"' . $file_name . '" multistamp "' . dirname(__FILE__) . DIRECTORY_SEPARATOR . 'confidential.pdf' . '"  output "' . $temp_file . '"', $ret);
             $file_name = $temp_file;
+        }elseif ($_SESSION['watermarks'] == 'username') {
+            $stamp_file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'stamp' . DIRECTORY_SEPARATOR . $_SESSION['user'] . '.pdf';
+            if (!is_readable($stamp_file)) {
+                require_once('FPDF/fpdf.php');
+                $pdf=new FPDF();
+                $pdf->AddPage();
+                $pdf->SetFont('Times','',9);
+                $pdf->SetTextColor(43, 3, 192);
+                $pdf->SetXY(0.0, 0.0);
+                $pdf->Write(9,'Downloaded by ' . $_SESSION['user']);
+                $pdf->Output( $stamp_file, 'F' );
+            }
+            $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $file . '-stamp-' . $_SESSION['user'] . '.pdf';
+            if (!file_exists($temp_file) || filemtime($temp_file) < filemtime($file_name))
+                system(select_pdftk() . '"' . $file_name . '" multistamp "' . $stamp_file . '"  output "' . $temp_file . '"', $ret);
+            $file_name = $temp_file;
         }
 
         //ATTACH FILES
