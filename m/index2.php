@@ -155,6 +155,8 @@ if (isset($_POST['form']) && $_POST['form'] == 'signin' && !empty($_POST['user']
 
             if ($rows == 0) {
 
+                die($username_quoted. "is not permitted to access.");
+                /*
                 $dbHandle->exec("INSERT INTO users (username,password,permissions) VALUES ($username_quoted,'','$permissions')");
 
                 $last_id = $dbHandle->query("SELECT last_insert_rowid() FROM users");
@@ -162,6 +164,7 @@ if (isset($_POST['form']) && $_POST['form'] == 'signin' && !empty($_POST['user']
                 $last_id = null;
 
                 $dbHandle->exec("INSERT INTO projects (userID,project) VALUES ($id,$username_quoted || '''s project', '1')");
+                */
             }
 
             $result = $dbHandle->query("SELECT userID FROM users WHERE username=$username_quoted LIMIT 1");

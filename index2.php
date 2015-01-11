@@ -340,6 +340,8 @@ if (isset($_POST['form']) && $_POST['form'] == 'signin' && !empty($_POST['user']
             // REGISTER LDAP USER INTO LOCAL DATABASE
             if ($rows == 0) {
 
+                die($username_quoted. "is not permitted to access.");
+                /*
                 // FIRST REGISTERED USER MUST BE ADMIN
                 $count = $dbHandle->query("SELECT count(*) FROM users");
                 $totalusers = $count->fetchColumn();
@@ -355,6 +357,7 @@ if (isset($_POST['form']) && $_POST['form'] == 'signin' && !empty($_POST['user']
                 $last_id = null;
 
                 $dbHandle->exec("INSERT INTO projects (userID,project) VALUES ($id,$username_quoted || '''s project', '1')");
+                */
             }
 
             // DELETE USER'S PASSWORD FROM LOCAL STORAGE FOR INCREASED SECURITY
